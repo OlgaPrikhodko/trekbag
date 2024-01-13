@@ -1,7 +1,7 @@
 import Select from "react-select";
 import { ItemType } from "../lib/constants";
 import EmptyView from "./EmptyView";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 const sortingOptions = [
   { value: "default", label: "Sort by default" },
@@ -21,15 +21,18 @@ export default function ItemList({
   handleToggleItem: (id: number) => void;
 }) {
   const [sortBy, setSortBy] = useState<SortingOptionValue>("default");
-  const sortedItems = [...items].sort((a: ItemType, b: ItemType) => {
-    if (sortBy === "packed") {
-      return Number(b.packed) - Number(a.packed);
-    }
-    if (sortBy === "unpacked") {
-      return Number(a.packed) - Number(b.packed);
-    }
-    return a.id - b.id;
-  });
+
+  const sortedItems = useMemo(() => {
+    return [...items].sort((a: ItemType, b: ItemType) => {
+      if (sortBy === "packed") {
+        return Number(b.packed) - Number(a.packed);
+      }
+      if (sortBy === "unpacked") {
+        return Number(a.packed) - Number(b.packed);
+      }
+      return a.id - b.id;
+    });
+  }, [items, sortBy]);
 
   return (
     <>
