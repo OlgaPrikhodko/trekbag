@@ -1,19 +1,31 @@
 import { ItemType } from "../lib/constants";
 
-export default function ItemList({ items }: { items: ItemType[] }) {
+export default function ItemList({
+  items,
+  handleDeleteItem,
+}: {
+  items: ItemType[];
+  handleDeleteItem: (id: number) => void;
+}) {
   return (
     <ul>
       {items.map((item) => (
-        <Item item={item} key={item.id} />
+        <Item item={item} key={item.id} handleDeleteItem={handleDeleteItem} />
       ))}
     </ul>
   );
 }
 
-function Item({ item }: { item: { name: string; packed: boolean } }) {
+function Item({
+  item,
+  handleDeleteItem,
+}: {
+  item: ItemType;
+  handleDeleteItem: (id: number) => void;
+}) {
   return (
     <li className="item">
-      <label htmlFor="999">
+      <label>
         <input
           type="checkbox"
           checked={item.packed}
@@ -24,7 +36,7 @@ function Item({ item }: { item: { name: string; packed: boolean } }) {
         {item.name}
       </label>
 
-      <button>❌</button>
+      <button onClick={() => handleDeleteItem(item.id)}>❌</button>
     </li>
   );
 }
