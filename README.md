@@ -1,4 +1,30 @@
-# React + TypeScript + Vite
+# Trekbag
+
+This is a simple app that helps to get prepared for the trip.
+
+## Busines requirements:
+
+- display list of needed items with checkbox to identify if it packed;
+- ability to check item if packed
+- ability to add item to list;
+- ability to remove item from list;
+- abitity to sort by packed, by unpacked;
+- show stat how many packed items / how many all items;
+- additional functionality with all items:
+- Mark all as complete;
+- mark all as incomplete;
+- remove all;
+- reset to initial list: good mood, passport, phone charger;
+- persist list in localStorage
+
+## technologies stack:
+
+- React
+- TypeScript
+- Zustand
+- React Select
+
+## React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
@@ -17,12 +43,12 @@ If you are developing a production application, we recommend updating the config
 export default {
   // other rules...
   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
+    ecmaVersion: "latest",
+    sourceType: "module",
+    project: ["./tsconfig.json", "./tsconfig.node.json"],
     tsconfigRootDir: __dirname,
   },
-}
+};
 ```
 
 - Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
