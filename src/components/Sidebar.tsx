@@ -1,31 +1,12 @@
 import AddItemForm from "./AddItemForm";
 import ButtonGroup from "./ButtonGroup";
 
-type SidebarProps = {
-  handleAddItem: (itemText: string) => void;
-  handleRemoveAllItems: () => void;
-  handleResetToInitial: () => void;
-  markAllAsIncomplete: () => void;
-  markAllAsComplete: () => void;
-};
-
-export default function Sidebar({
-  handleAddItem,
-  handleRemoveAllItems,
-  handleResetToInitial,
-  markAllAsComplete,
-  markAllAsIncomplete,
-}: SidebarProps) {
+export default function Sidebar() {
   return (
     <div className="sidebar">
-      <AddItemForm onAddItem={handleAddItem} />
+      <AddItemForm />
 
-      <ButtonGroup
-        handleRemoveAllItems={handleRemoveAllItems}
-        handleResetToInitial={handleResetToInitial}
-        markAllAsIncomplete={markAllAsIncomplete}
-        markAllAsComplete={markAllAsComplete}
-      />
+      <ButtonGroup />
     </div>
   );
 }
