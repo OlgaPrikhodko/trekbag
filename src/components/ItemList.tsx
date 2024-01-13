@@ -3,14 +3,21 @@ import { ItemType } from "../lib/constants";
 export default function ItemList({
   items,
   handleDeleteItem,
+  handleToggleItem,
 }: {
   items: ItemType[];
   handleDeleteItem: (id: number) => void;
+  handleToggleItem: (id: number) => void;
 }) {
   return (
     <ul>
       {items.map((item) => (
-        <Item item={item} key={item.id} handleDeleteItem={handleDeleteItem} />
+        <Item
+          item={item}
+          key={item.id}
+          onDeleteItem={handleDeleteItem}
+          onToggleItem={handleToggleItem}
+        />
       ))}
     </ul>
   );
@@ -18,10 +25,12 @@ export default function ItemList({
 
 function Item({
   item,
-  handleDeleteItem,
+  onDeleteItem,
+  onToggleItem,
 }: {
   item: ItemType;
-  handleDeleteItem: (id: number) => void;
+  onDeleteItem: (id: number) => void;
+  onToggleItem: (id: number) => void;
 }) {
   return (
     <li className="item">
@@ -30,13 +39,13 @@ function Item({
           type="checkbox"
           checked={item.packed}
           onChange={() => {
-            item.packed = !item.packed;
+            onToggleItem(item.id);
           }}
         />
         {item.name}
       </label>
 
-      <button onClick={() => handleDeleteItem(item.id)}>❌</button>
+      <button onClick={() => onDeleteItem(item.id)}>❌</button>
     </li>
   );
 }

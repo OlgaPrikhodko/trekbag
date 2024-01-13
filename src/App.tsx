@@ -24,6 +24,13 @@ function App() {
     setItems(newItems);
   };
 
+  const handleToggleItem = (id: number) => {
+    const newItems = items.map((item) =>
+      item.id === id ? { ...item, packed: !item.packed } : item
+    );
+    setItems(newItems);
+  };
+
   const handleRemoveAllItems = () => {
     setItems([]);
   };
@@ -47,7 +54,11 @@ function App() {
       <BackgroundHeading />
       <main>
         <Header />
-        <ItemList items={items} handleDeleteItem={handleDeleteItem} />
+        <ItemList
+          items={items}
+          handleDeleteItem={handleDeleteItem}
+          handleToggleItem={handleToggleItem}
+        />
         <Sidebar
           handleAddItem={handleAddItem}
           handleRemoveAllItems={handleRemoveAllItems}
