@@ -1,4 +1,5 @@
 import { ItemType } from "../lib/constants";
+import EmptyView from "./EmptyView";
 
 export default function ItemList({
   items,
@@ -10,16 +11,20 @@ export default function ItemList({
   handleToggleItem: (id: number) => void;
 }) {
   return (
-    <ul>
-      {items.map((item) => (
-        <Item
-          item={item}
-          key={item.id}
-          onDeleteItem={handleDeleteItem}
-          onToggleItem={handleToggleItem}
-        />
-      ))}
-    </ul>
+    <>
+      <ul className="item-list">
+        {!items.length && <EmptyView />}
+
+        {items.map((item) => (
+          <Item
+            item={item}
+            key={item.id}
+            onDeleteItem={handleDeleteItem}
+            onToggleItem={handleToggleItem}
+          />
+        ))}
+      </ul>
+    </>
   );
 }
 
