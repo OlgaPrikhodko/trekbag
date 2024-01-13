@@ -16,6 +16,7 @@ export default function AddItemForm({
     if (!itemText) {
       alert("Item can't be empty");
       inputRef.current?.focus();
+      return;
     }
 
     onAddItem(itemText);
