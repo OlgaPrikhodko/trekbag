@@ -1,14 +1,10 @@
-const initialItems = [
-  { name: "good mood", packed: true },
-  { name: "passport", packed: true },
-  { name: "phone charger", packed: true },
-];
+import { initialItems } from "../lib/constants";
 
 export default function ItemList() {
   return (
     <ul>
       {initialItems.map((item) => (
-        <Item item={item} key={item.name} />
+        <Item item={item} key={item.id} />
       ))}
     </ul>
   );
@@ -18,7 +14,7 @@ function Item({ item }: { item: { name: string; packed: boolean } }) {
   return (
     <li className="item">
       <label htmlFor="999">
-        <input type="checkbox" value={item.packed} />
+        <input type="checkbox" checked={item.packed} />
         {item.name}
       </label>
     </li>
