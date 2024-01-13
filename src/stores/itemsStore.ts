@@ -14,7 +14,7 @@ type ItemsState = {
   // totalNumberOfItems: number;
 };
 
-create<ItemsState>((set) => ({
+export const useItemsStore = create<ItemsState>((set) => ({
   items: initialItems,
   removeAllItems: () => {
     set(() => ({ items: [] }));
