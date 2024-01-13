@@ -8,7 +8,7 @@ type SidebarProps = {
 export default function Sidebar({ handleAddItem }: SidebarProps) {
   return (
     <div className="sidebar">
-      <AddItemForm handleAddItem={handleAddItem} />
+      <AddItemForm onAddItem={handleAddItem} />
 
       <ButtonGroup />
     </div>
