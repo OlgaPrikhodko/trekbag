@@ -1,16 +1,15 @@
 import { useRef, useState } from "react";
 import Button from "./Button";
-import { ItemType } from "../lib/constants";
 
 export default function AddItemForm({
-  setItems,
+  handleAddItem,
 }: {
-  setItems: React.Dispatch<React.SetStateAction<ItemType[]>>;
+  handleAddItem: (itemText: string) => void;
 }) {
   const [itemText, setItemText] = useState("");
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  const handleSubmit = () => (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // basic validation
@@ -19,14 +18,10 @@ export default function AddItemForm({
       inputRef.current?.focus();
     }
 
-    const newItem = {
-      id: new Date().getTime(),
-      name: itemText,
-      packed: false,
-    };
-    setItems((prevItems) => [...prevItems, newItem]);
+    handleAddItem(itemText);
     setItemText("");
   };
+
   return (
     <form onSubmit={handleSubmit}>
       <h2>Add an item</h2>

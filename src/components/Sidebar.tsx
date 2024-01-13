@@ -1,15 +1,14 @@
-import { ItemType } from "../lib/constants";
 import AddItemForm from "./AddItemForm";
 import ButtonGroup from "./ButtonGroup";
 
 type SidebarProps = {
-  setItems: React.Dispatch<React.SetStateAction<ItemType[]>>;
+  handleAddItem: (itemText: string) => void;
 };
 
-export default function Sidebar({ setItems }: SidebarProps) {
+export default function Sidebar({ handleAddItem }: SidebarProps) {
   return (
     <div className="sidebar">
-      <AddItemForm setItems={setItems} />
+      <AddItemForm handleAddItem={handleAddItem} />
 
       <ButtonGroup />
     </div>

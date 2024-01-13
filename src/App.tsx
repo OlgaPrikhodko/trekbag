@@ -4,10 +4,20 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import ItemList from "./components/ItemList";
 import Sidebar from "./components/Sidebar";
-import { initialItems } from "./lib/constants";
+import { ItemType, initialItems } from "./lib/constants";
 
 function App() {
-  const [items, setItems] = useState(initialItems);
+  const [items, setItems] = useState<ItemType[]>(initialItems);
+
+  const handleAddItem = (itemText: string) => {
+    const newItem = {
+      id: new Date().getTime(),
+      name: itemText,
+      packed: false,
+    };
+    const newItems = [...items, newItem];
+    setItems(newItems);
+  };
 
   return (
     <>
@@ -15,7 +25,7 @@ function App() {
       <main>
         <Header />
         <ItemList items={items} />
-        <Sidebar setItems={setItems} />
+        <Sidebar handleAddItem={handleAddItem} />
       </main>
       <Footer />
     </>
