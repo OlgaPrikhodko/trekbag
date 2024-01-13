@@ -19,13 +19,37 @@ function App() {
     setItems(newItems);
   };
 
+  const handleRemoveAllItems = () => {
+    setItems([]);
+  };
+
+  const handleResetToInitial = () => {
+    setItems(initialItems);
+  };
+
+  const markAllAsComplete = () => {
+    const newItems = items.map((item) => ({ ...item, packed: true }));
+    setItems(newItems);
+  };
+
+  const markAllAsIncomplete = () => {
+    const newItems = items.map((item) => ({ ...item, packed: false }));
+    setItems(newItems);
+  };
+
   return (
     <>
       <BackgroundHeading />
       <main>
         <Header />
         <ItemList items={items} />
-        <Sidebar handleAddItem={handleAddItem} />
+        <Sidebar
+          handleAddItem={handleAddItem}
+          handleRemoveAllItems={handleRemoveAllItems}
+          handleResetToInitial={handleResetToInitial}
+          markAllAsIncomplete={markAllAsIncomplete}
+          markAllAsComplete={markAllAsComplete}
+        />
       </main>
       <Footer />
     </>

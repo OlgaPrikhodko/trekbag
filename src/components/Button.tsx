@@ -2,13 +2,18 @@ import { ReactNode } from "react";
 
 export default function Button({
   children,
-  type,
+  buttonType,
+  onClickHandler,
 }: {
-  type?: "secondary";
+  buttonType?: "secondary";
   children: ReactNode;
+  onClickHandler?: () => void;
 }) {
   return (
-    <button className={`btn ${type === "secondary" ? "btn--secondary" : ""}`}>
+    <button
+      onClick={onClickHandler}
+      className={`btn ${buttonType === "secondary" ? "btn--secondary" : ""}`}
+    >
       {children}
     </button>
   );
