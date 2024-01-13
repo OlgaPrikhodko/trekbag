@@ -5,6 +5,8 @@ import Header from "./components/Header";
 import ItemList from "./components/ItemList";
 import Sidebar from "./components/Sidebar";
 import { ItemType, initialItems } from "./lib/constants";
+import Counter from "./components/Counter";
+import Logo from "./components/Logo";
 
 function App() {
   const [items, setItems] = useState<ItemType[]>(() => {
@@ -66,10 +68,14 @@ function App() {
     <>
       <BackgroundHeading />
       <main>
-        <Header
-          totalNumberOfItems={items.length}
-          numberOfItemsPacked={numberOfItemsPacked}
-        />
+        <Header>
+          <Logo />
+
+          <Counter
+            numberOfItemsPacked={numberOfItemsPacked}
+            totalNumberOfItems={items.length}
+          />
+        </Header>
         <ItemList
           items={items}
           handleDeleteItem={handleDeleteItem}
